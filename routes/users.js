@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/User');
+const isAuthenticated = require('../middlewares/isAuthenticated');
+
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
+router.get('/', isAuthenticated, async function(req, res, next) {
   
   // SLECT * FROM user
   const users = await User.find(); //Obter todos os usuarios
